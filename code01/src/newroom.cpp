@@ -15,6 +15,7 @@ void newroom(std::string sroom, int connfd)
     }
     std::unique_lock<std::mutex> lock(mtxrser);
     roomtree[sroom].first.erase(connfd);
+    Close(connfd);
 }
 
 void workroom(std::string sroom)

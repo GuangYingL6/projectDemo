@@ -22,10 +22,17 @@ int main(int argc, char **argv)
 
     while (1)
     {
+        {
+            std::unique_lock<std::mutex> lock(mtxrun);
+            if (!run)
+                break;
+        }
         clientlen = sizeof(struct sockaddr_storage);
         connfd = Accept(listenfd, (SA *)&clientaddr, &clientlen);
         std::unique_lock<std::mutex> lock(mtxroom);
         clientdq.push_back(connfd);
         cond.notify_one();
     }
+    Close(connfd);
+    return 0;
 }

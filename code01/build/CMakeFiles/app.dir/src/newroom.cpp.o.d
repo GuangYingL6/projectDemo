@@ -2,7 +2,7 @@ CMakeFiles/app.dir/src/newroom.cpp.o: \
  /home/guangying/code/code01/src/newroom.cpp /usr/include/stdc-predef.h \
  /home/guangying/code/code01/src/../include/newroom.h \
  /home/guangying/code/code01/src/../include/externnum.h \
- /usr/include/csapp.h /usr/include/stdio.h \
+ /home/guangying/code/code01/include/csapp.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \

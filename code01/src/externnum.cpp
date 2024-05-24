@@ -14,3 +14,6 @@ std::map<std::string, std::pair<std::map<int, std::string>, std::deque<std::stri
 
 int rservers = 0;
 std::mutex mtxrser;
+
+bool run = true;
+std::mutex mtxrun;

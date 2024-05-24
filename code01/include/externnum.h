@@ -22,4 +22,6 @@ extern std::map<std::string, std::pair<std::map<int, std::string>, std::deque<st
 extern int rservers;
 extern std::mutex mtxrser;
 
+extern bool run;
+extern std::mutex mtxrun;
 #endif
