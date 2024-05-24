@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../lib/libextnum.a 
+/usr/bin/ranlib ../../lib/libextnum.a

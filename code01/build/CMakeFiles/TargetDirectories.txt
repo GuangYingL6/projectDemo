@@ -1,0 +1,6 @@
+/home/guangying/code/code01/build/CMakeFiles/app.dir
+/home/guangying/code/code01/build/CMakeFiles/edit_cache.dir
+/home/guangying/code/code01/build/CMakeFiles/rebuild_cache.dir
+/home/guangying/code/code01/build/src/CMakeFiles/extnum.dir
+/home/guangying/code/code01/build/src/CMakeFiles/edit_cache.dir
+/home/guangying/code/code01/build/src/CMakeFiles/rebuild_cache.dir

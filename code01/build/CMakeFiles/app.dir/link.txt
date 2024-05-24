@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/app.dir/src/externnum.cpp.o CMakeFiles/app.dir/src/main.cpp.o CMakeFiles/app.dir/src/newroom.cpp.o CMakeFiles/app.dir/src/setroom.cpp.o -o ../output/app   -L/home/guangying/code/code01/lib  -Wl,-rpath,/home/guangying/code/code01/lib ../lib/libextnum.a -lcsapp 
