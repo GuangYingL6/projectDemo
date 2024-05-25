@@ -2,6 +2,9 @@
 
 void setroom()
 {
+    {
+        Fputs("setroom start!\n", stdout);
+    }
     while (1)
     {
 
@@ -15,8 +18,8 @@ void setroom()
         {
             { /*连接队列访问保护*/
                 std::unique_lock<std::mutex> lock(mtxroom);
-                cond.wait(lock, []()
-                          { return !clientdq.empty(); });
+                roomcond.wait(lock, []()
+                              { return !clientdq.empty(); });
 
                 if (!clientdq.empty())
                 {
@@ -28,7 +31,7 @@ void setroom()
                 {
                     isroom = false;
                     connfd = -1;
-                    break;
+                    continue;
                 }
             }
             rio_t rio;
@@ -37,16 +40,35 @@ void setroom()
             int n = Rio_readlineb(&rio, buf, MAXLINE);
             if (n < 0)
                 continue;
-            std::stringstream sio(buf);
-
+            std::stringstream sio;
+            sio << buf;
             sio >> sroom >> name;
+            // std::cout << sroom << " " << name << std::endl;
+
+            {
+                std::string s = " ";
+                s = sroom + s + name + "\n";
+                Fputs(s.c_str(), stdout);
+            }
+            if (isroom)
+            {
+                break;
+            }
         }
 
         { /*保护roomtree*/
             std::unique_lock<std::mutex> lock(mtxrser);
             if (isroom)
             {
+                bool ff = false;
                 if (roomtree.find(sroom) == roomtree.end())
+                {
+                    ff = true;
+                }
+                roomtree[sroom].first.insert({connfd, name});
+                std::function<void(std::string, int)> cfuntest = newroom;
+                thpoor.enqueue(std::bind(cfuntest, sroom, connfd));
+                if (ff)
                 {
                     ++rservers;
                     roomtree[sroom] = {{}, {}};
@@ -54,9 +76,6 @@ void setroom()
                     std::function<void(std::string)> sfuntest = workroom;
                     thpoor.enqueue(std::bind(sfuntest, sroom));
                 }
-                roomtree[sroom].first.insert({connfd, name});
-                std::function<void(std::string, int)> cfuntest = newroom;
-                thpoor.enqueue(std::bind(cfuntest, sroom, connfd));
             }
         }
     }

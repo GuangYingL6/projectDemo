@@ -30,9 +30,12 @@ int main(int argc, char **argv)
         clientlen = sizeof(struct sockaddr_storage);
         connfd = Accept(listenfd, (SA *)&clientaddr, &clientlen);
         std::unique_lock<std::mutex> lock(mtxroom);
+        std::string s = "connect: ";
+        s += connfd;
+        Fputs(s.c_str(), stdout);
         clientdq.push_back(connfd);
-        cond.notify_one();
+        roomcond.notify_all();
     }
     Close(connfd);
-    return 0;
+    exit(0);
 }

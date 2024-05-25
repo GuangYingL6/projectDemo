@@ -16,6 +16,7 @@ extern ThreadPool thpoor;
 
 extern std::deque<int> clientdq;
 extern std::condition_variable cond;
+extern std::condition_variable roomcond;
 extern std::mutex mtxroom;
 extern std::map<std::string, std::pair<std::map<int, std::string>, std::deque<std::string>>> roomtree;
 

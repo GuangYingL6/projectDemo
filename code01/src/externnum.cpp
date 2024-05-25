@@ -5,10 +5,11 @@
 #include <condition_variable>
 #include "../include/threadpoor.hpp"
 
-ThreadPool thpoor(8);
+ThreadPool thpoor(10);
 
 std::deque<int> clientdq;
 std::condition_variable cond;
+std::condition_variable roomcond;
 std::mutex mtxroom;
 std::map<std::string, std::pair<std::map<int, std::string>, std::deque<std::string>>> roomtree;
 
